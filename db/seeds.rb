@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+["Ronaldo", "Messi", "Kaka", "Gallas", "Fabregas"].each do |name|
+  User.find_or_create_by!(name: name)
+end
