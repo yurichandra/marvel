@@ -5,6 +5,8 @@ class FinishActivityService
 
   def perform
     finish_activity!
+
+    GenerateFeedJob.perform_async(@activity.id, @activity.user.id)
   end
   
   private
