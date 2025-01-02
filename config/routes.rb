@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   namespace :api do
     post "/users/follow", to: "users#follow"
     post "/users/unfollow", to: "users#unfollow"
+
+    post "/activities/start", to: "activities#start"
   end
 end
