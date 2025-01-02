@@ -22,10 +22,7 @@ module Api
       if existing_activity.nil?
         render json: {"error": "you don't have active sleeping activity yet"}, status: :unprocessable_entity
       else
-        end_at = Time.current
-        duration = Time.current - existing_activity.start_at
-        existing_activity.update(end_at: end_at, duration: duration.to_int)
-
+        FinishActivityService.new(existing_activity).perform
         render json: {"status": "ok"}
       end
     end
