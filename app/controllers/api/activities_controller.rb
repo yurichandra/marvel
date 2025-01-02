@@ -27,6 +27,18 @@ module Api
       end
     end
 
+    def feeds
+      client = Redis.new(url: ENV['REDIS_URL'])
+
+      feeds = client.get("feeds_#{user.id}")
+      if feeds.nil?
+        render json: {}
+      else
+        activities = JSON.parse(feeds).map { |attribute| Activity.new(attribute) }
+        render json: activities
+      end
+    end
+
     private
 
     def user
