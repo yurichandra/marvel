@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  post "/api/users/follow", to: "users#follow"
-  post "/api/users/unfollow", to: "users#unfollow"
+  namespace :api do
+    post "/users/follow", to: "users#follow"
+    post "/users/unfollow", to: "users#unfollow"
+  end
 end
