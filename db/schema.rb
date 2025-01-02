@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_31_160902) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_02_142206) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.integer "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["duration"], name: "index_activities_on_duration"
+    t.index ["start_at"], name: "index_activities_on_start_at"
+    t.index ["user_id"], name: "index_activities_on_user_id"
+  end
 
   create_table "user_follows", primary_key: ["follower_id", "following_id"], force: :cascade do |t|
     t.integer "follower_id", null: false
@@ -25,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_31_160902) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "activities", "users"
   add_foreign_key "user_follows", "users", column: "follower_id"
   add_foreign_key "user_follows", "users", column: "following_id"
 end
