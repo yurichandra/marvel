@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   post "/users/follow", to: "users#follow"
+  post "/users/unfollow", to: "users#unfollow"
 end
