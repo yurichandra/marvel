@@ -1,7 +1,6 @@
 module Api
   class ActivitiesController < ApplicationController
     def start
-      existing_activity = Activity.where(user_id: user.id).where.not(start_at: nil).order(created_at: :desc).first
       if existing_activity.present?
         render json: {"error": "your existing sleeping activity is not finished yet"}, status: :unprocessable_entity
       else
@@ -14,10 +13,26 @@ module Api
       end
     end
 
+    def finish
+      if existing_activity.nil?
+        render json: {"error": "you don't have active sleeping activity yet"}, status: :unprocessable_entity
+      else
+        end_at = Time.current
+        duration = Time.current - existing_activity.start_at
+        existing_activity.update(end_at: end_at, duration: duration.to_int)
+
+        render json: {"status": "ok"}
+      end
+    end
+
     private
 
     def user
       @user ||= User.find(request.headers["x-user-id"])
+    end
+
+    def existing_activity
+      @existing_activity ||= Activity.where(user_id: user.id).where.not(start_at: nil).where(end_at: nil).order(created_at: :desc).first
     end
   end
 end

@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     post "/users/unfollow", to: "users#unfollow"
 
     post "/activities/start", to: "activities#start"
+    post "/activities/finish", to: "activities#finish"
   end
 end
