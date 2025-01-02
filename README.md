@@ -1,24 +1,29 @@
-# README
+# Marvel
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A good night application for track and share sleeping time.
 
-Things you may want to cover:
+## Stacks
 
-* Ruby version
+- Ruby v3.2.2
+- Ruby on Rails v7.0.8.7
+- Postgres
+- Redis
+- Sidekiq
 
-* System dependencies
+## How to start
 
-* Configuration
+Before starting the app please run command below
 
-* Database creation
+```
+bundle install
 
-* Database initialization
+rails db:create
 
-* How to run the test suite
+rails db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
+rails db:seed
+```
 
-* Deployment instructions
+## How to test
 
-* ...
+All the available endpoints can be accessed via this [API Collection](https://drive.google.com/file/d/1GRS7aU9EMxe2jLuTj2-HmsFDcDSk0E_1/view?usp=sharing)
