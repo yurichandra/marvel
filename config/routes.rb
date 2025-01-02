@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
     post "/activities/start", to: "activities#start"
     post "/activities/finish", to: "activities#finish"
+    get "/activities/my", to: "activities#my_activities"
   end
 end

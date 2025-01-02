@@ -1,5 +1,10 @@
 module Api
   class ActivitiesController < ApplicationController
+    def my_activities
+      activities = user.activities.order(created_at: :desc)
+      render json: activities
+    end
+
     def start
       if existing_activity.present?
         render json: {"error": "your existing sleeping activity is not finished yet"}, status: :unprocessable_entity
